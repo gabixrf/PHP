@@ -1,0 +1,10 @@
+<?php
+
+$distancia= 5;
+$litros= 10;
+
+$consumoMedio = $distancia/$litros;
+
+echo "Consumo Médio: ". $consumoMedio ." km/l";
+
+?>
