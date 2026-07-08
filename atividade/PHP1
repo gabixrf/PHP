@@ -1,1 +1,15 @@
+<?php
 
+$celsius= 5;
+$fahrenheit= 10;
+
+$conversaoFC = (($fahrenheit-32)*5/9);
+$conversaoCF = $celsius*1.8+32;
+
+
+
+
+echo "Conversao para fahrenheit: ". $conversaoCF;
+echo "<br>";
+echo "Conversao para celsius: ". $conversaoFC;
+?>
