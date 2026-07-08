@@ -1,0 +1,17 @@
+<?php
+
+$NOTA1= 1;
+$NOTA2= 4;
+$NOTA3= 7;
+
+$media = ($NOTA1 + $NOTA2 + $NOTA3) / 3;
+
+if ($media >= 6){
+    echo "Você foi aprovado. A média é: ". $media;
+} elseif ($media >= 4 && $media <6) {
+    echo "Você está de recuperação. A média é: ". $media;
+} else {
+    echo "Você está reprovado. A média é: ". $media; 
+}
+
+?>
