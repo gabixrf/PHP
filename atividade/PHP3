@@ -1,0 +1,10 @@
+<?php
+
+$altura= 1.75;
+$peso= 50;
+
+$imc = $peso/($altura * $altura);
+
+echo "IMC: ". $imc ;
+
+?>
