@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once "conexao.php";
 require_once "protecao.php";
 
@@ -36,11 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
 
         echo "Meta criada com sucesso!";
-
     } else {
 
         echo "Erro ao criar meta: " . $conexao->error;
-
     }
 
     $stmt->close();
@@ -58,61 +54,155 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <title>Nova Meta - Koplo</title>
 
+
+    <style>
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f9;
+            color: #102f49;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Card principal */
+        .meta-container {
+            width: 500px;
+            background: #ffffff;
+            border: 1px solid #e3e8ec;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Título */
+        .meta-container h1 {
+            font-size: 26px;
+            color: #102f49;
+            margin-bottom: 8px;
+        }
+
+        /* Usuário */
+        .meta-container p {
+            font-size: 14px;
+            color: #70859a;
+            margin-bottom: 30px;
+        }
+
+        /* Labels */
+        .meta-container label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #183b56;
+            margin-bottom: 8px;
+        }
+
+        /* Inputs */
+        .meta-container input {
+            width: 100%;
+            height: 45px;
+            padding: 0 14px;
+            border: 1px solid #dce3e8;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #183b56;
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 20px;
+            transition: 0.2s;
+        }
+
+        .meta-container input::placeholder {
+            color: #a2adb7;
+        }
+
+        .meta-container input:focus {
+            border-color: #2cc493;
+            box-shadow: 0 0 0 2px rgba(44, 196, 147, 0.12);
+        }
+
+        /* Botão */
+        .meta-container button {
+            width: 100%;
+            height: 45px;
+            border: none;
+            border-radius: 8px;
+            background: #2cc493;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .meta-container button:hover {
+            background: #25ad82;
+        }
+
+    </style>
 </head>
 
 <body>
 
-    <h1>Nova Meta</h1>
+    <div class="meta-container">
 
-    <p>
-        Usuário:
-        <?php echo htmlspecialchars($_SESSION["usuario_nome"]); ?>
-    </p>
+        <h1>Nova Meta</h1>
 
-    <form method="POST">
+        <p>
+            Usuário:
+            <?php echo htmlspecialchars($_SESSION["usuario_nome"]); ?>
+        </p>
 
-        <label>Nome da meta:</label>
+        <form method="POST">
 
-        <input
-            type="text"
-            name="nome"
-            placeholder="Ex: Viagem"
-            required
-        >
+            <label>Nome da meta:</label>
 
-        <br><br>
+            <input
+                type="text"
+                name="nome"
+                placeholder="Ex: Viagem"
+                required>
 
-
-        <label>Valor objetivo:</label>
-
-        <input
-            type="number"
-            name="valor_objetivo"
-            step="0.01"
-            min="0.01"
-            placeholder="0.00"
-            required
-        >
-
-        <br><br>
+            <br><br>
 
 
-        <label>Data limite:</label>
+            <label>Valor objetivo:</label>
 
-        <input
-            type="date"
-            name="data_limite"
-        >
+            <input
+                type="number"
+                name="valor_objetivo"
+                step="0.01"
+                min="0.01"
+                placeholder="0.00"
+                required>
 
-        <br><br>
+            <br><br>
 
 
-        <button type="submit">
-            Criar meta
-        </button>
+            <label>Data limite:</label>
 
-    </form>
+            <input
+                type="date"
+                name="data_limite">
 
+            <br><br>
+
+
+            <button type="submit">
+                Criar meta
+            </button>
+
+        </form>
+    </div>
 </body>
 
 </html>
