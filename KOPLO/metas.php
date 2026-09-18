@@ -1328,13 +1328,13 @@ function escolherIconeMeta($nome)
                                     </a>
 
 
-                                    <a
-                                        href="resgatar_meta.php?id=<?php echo $meta["id"]; ?>"
+                                    <a 
+                                        href="resgatar_meta.php?id=<?php echo $meta["id"]; ?>&origem=metas"
                                         class="btn-resgatar">
 
                                         Resgatar
-
                                     </a>
+
 
 
                                     <a
