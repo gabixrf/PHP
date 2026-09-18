@@ -86,56 +86,138 @@ $stmt->close();
 
 <body>
 
-    <h1>Editar meta</h1>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <form method="POST">
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7f9;
+            color: #102f49;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-        <label>Nome da meta:</label>
+        /* Card principal */
+        .meta-container {
+            width: 500px;
+            background: #ffffff;
+            border: 1px solid #e3e8ec;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
 
-        <input
-            type="text"
-            name="nome"
-            value="<?php echo htmlspecialchars($meta["nome"]); ?>"
-            required>
+        /* Título */
+        .meta-container h1 {
+            font-size: 26px;
+            color: #102f49;
+            margin-bottom: 8px;
+        }
 
-        <br><br>
+        /* Labels */
+        .meta-container label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #183b56;
+            margin-bottom: 8px;
+        }
 
-        <label>Valor objetivo:</label>
+        /* Inputs */
+        .meta-container input {
+            width: 100%;
+            height: 45px;
+            padding: 0 14px;
+            border: 1px solid #dce3e8;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #183b56;
+            font-size: 14px;
+            outline: none;
+            margin-bottom: 20px;
+            transition: 0.2s;
+        }
 
-        <input
-            type="number"
-            name="valor_objetivo"
-            step="0.01"
-            min="0.01"
-            value="<?php echo $meta["valor_objetivo"]; ?>"
-            required>
+        .meta-container input:focus {
+            border-color: #2cc493;
+            box-shadow: 0 0 0 2px rgba(44, 196, 147, 0.12);
+        }
 
-        <br><br>
+        /* Botão */
+        .meta-container button {
+            width: 100%;
+            height: 45px;
+            border: none;
+            border-radius: 8px;
+            background: #2cc493;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
-        <label>Valor atual:</label>
+        .meta-container button:hover {
+            background: #25ad82;
+        }
+    </style>
 
-        <input
-            type="number"
-            name="valor_atual"
-            step="0.01"
-            min="0"
-            value="<?php echo $meta["valor_atual"]; ?>"
-            required>
+    <div class="meta-container">
 
-        <br><br>
+        <h1>Editar meta</h1>
 
-        <label>Data limite:</label>
+        <?php if (isset($erro)): ?>
+            <div class="mensagem-erro">
+                <?php echo htmlspecialchars($erro); ?>
+            </div>
+        <?php endif; ?>
 
-        <input
-            type="date"
-            name="data_limite"
-            value="<?php echo $meta["data_limite"]; ?>">
+        <form method="POST">
 
-        <br><br>
+            <label>Nome da meta:</label>
+            <input
+                type="text"
+                name="nome"
+                value="<?php echo htmlspecialchars($meta["nome"]); ?>"
+                required>
 
-        <button type="submit">Salvar alterações</button>
+            <label>Valor objetivo:</label>
+            <input
+                type="number"
+                name="valor_objetivo"
+                step="0.01"
+                min="0.01"
+                value="<?php echo $meta["valor_objetivo"]; ?>"
+                required>
 
-    </form>
+            <label>Valor atual:</label>
+            <input
+                type="number"
+                name="valor_atual"
+                step="0.01"
+                min="0"
+                value="<?php echo $meta["valor_atual"]; ?>"
+                required>
+
+            <label>Data limite:</label>
+            <input
+                type="date"
+                name="data_limite"
+                value="<?php echo $meta["data_limite"]; ?>">
+
+            <button type="submit">
+                Salvar alterações
+            </button>
+
+        </form>
+
+    </div>
 
 </body>
 
