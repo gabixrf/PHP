@@ -13,7 +13,7 @@ $usuario_id = $_SESSION["usuario_id"];
 // Se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $nome = $_POST["nome"];
+    $nome = ucfirst(strtolower(trim($_POST["nome"])));
     $valor_objetivo = $_POST["valor_objetivo"];
     $data_limite = $_POST["data_limite"];
 
@@ -33,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
 
-        echo "Meta criada com sucesso!";
+        header("Location: metas.php");
+        exit;
     } else {
 
         echo "Erro ao criar meta: " . $conexao->error;
@@ -56,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <style>
-        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -75,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         /* Card principal */
         .meta-container {
+            position: relative;
             width: 500px;
             background: #ffffff;
             border: 1px solid #e3e8ec;
@@ -82,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 35px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
+
 
         /* Título */
         .meta-container h1 {
@@ -148,6 +150,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background: #25ad82;
         }
 
+        .botao-fechar {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            text-decoration: none;
+            color: #70859a;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 1;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .botao-fechar:hover {
+            color: #102f49;
+        }
     </style>
 </head>
 
@@ -155,7 +173,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="meta-container">
 
+        <a href="metas.php" class="botao-fechar">&times;</a>
+
         <h1>Nova Meta</h1>
+
+        <?php if (isset($erro)): ?>
+            <div class="mensagem-erro">
+                <?php echo htmlspecialchars($erro); ?>
+            </div>
+        <?php endif; ?>
 
         <p>
             Usuário:
